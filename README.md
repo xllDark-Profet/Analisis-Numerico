@@ -1,2 +1,2 @@
 # Analisi Numerico
- Conjunto de actividades de Andres Porras
+ Conjunto de actividades de Andres Porras, Alejandro Diaz, Cristian Benitez.
