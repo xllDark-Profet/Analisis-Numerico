@@ -1,0 +1,25 @@
+punto 4)
+
+def g(x): return (x**2+1)
+
+
+x = 1
+x = g(x)
+print("valor inicial: ", x)
+
+era = 1
+cont = 0
+datos=[]
+
+while (era >= te):
+
+    x1 = x
+    x = g(x)
+    era = abs(x - x1)
+    
+    if cont >500:
+      exit(0)
+
+    cont = cont + 1
+    print(" iteracion ", cont)
+    print(x)

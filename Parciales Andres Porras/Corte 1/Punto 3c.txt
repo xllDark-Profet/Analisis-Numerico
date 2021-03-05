@@ -1,0 +1,54 @@
+#Punto 3 c)
+
+#se hizo con R gracias a los pseudocodigos del libro metodos numericos en r
+detPrecision <- function(tol) {
+  n = log(tol, 10) * -1
+  return (n)
+}
+
+detError <- function(n, precision) {
+  return (formatC(n, format = "e", digits=precision))
+}
+
+Deriv <- function(expresion, nombre, orden = 1) { #Algoritmo para calcular derivadas de orden superior
+  if(orden < 1) stop("'orden >= 1")
+  if(orden == 1) D(expresion, nombre)
+  else Deriv(D(expresion, nombre), nombre, orden - 1)
+}
+
+n=4
+z=0
+
+PolT= function(f, x0, z, n){
+
+  gx = parse(text=f)
+
+  # convertir g en función
+  Funcion = function(x){eval(gx[[1]])}
+
+  precision <-detPrecision(1.e-9)
+
+  p = rep(NA, length=n+1)
+
+  n=4
+  z=0
+
+  for(i in 1:n){
+    D = Deriv(gx,"x", i)
+    Dx = function(x) eval(D)
+    p[i]=(Dx(z)/factorial(i))*(x0-z)^i
+
+    error <- abs(Funcion(x0)-p[i])
+    cat("iteracion #",i,"Precision=",detError(p[i],precision)," Error= ", detError(error,precision), "\n")
+  }
+    sum(p)
+   x <- seq(-0.5, 0.5, length.out=100)
+
+   sum(p)
+}
+
+#Prueba
+cat("RESULTADO ITERACIONES \n")
+PolT("log(1+x)", 0.005, z, n)
+PolT("log(1+x)", 0.0001, z, n)
+PolT("log(1+x)", 0.499999999, z, n)
